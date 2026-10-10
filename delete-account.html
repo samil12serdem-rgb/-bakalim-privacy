@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="BAKALIM hesabı ve ilişkili veriler için güvenli silme talebi oluşturma sayfası.">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://accounts.google.com/gsi/client; style-src 'unsafe-inline' https://accounts.google.com/gsi/style; img-src 'self' data: https://*.googleusercontent.com; frame-src https://accounts.google.com/gsi/; connect-src https://bakalim-api.onrender.com; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <title>BAKALIM Hesap ve Veri Silme</title>
+  <style>
+    :root { color-scheme:light; --ink:#1f2937; --muted:#6b7280; --line:#eadfce; --accent:#c95308; --soft:#fff8ee; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#fffdf9; color:var(--ink); font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif; }
+    main { width:min(780px,calc(100% - 32px)); margin:0 auto; padding:44px 0 64px; }
+    h1 { margin:0 0 6px; color:#161616; font-size:clamp(30px,6vw,42px); line-height:1.15; }
+    h2 { margin:34px 0 10px; color:#161616; font-size:22px; }
+    p,li { max-width:72ch; }
+    .eyebrow { color:var(--accent); font-weight:700; letter-spacing:.04em; text-transform:uppercase; font-size:13px; }
+    .notice { margin:24px 0; padding:18px; border:1px solid var(--line); border-radius:14px; background:var(--soft); }
+    .action { display:inline-block; margin:8px 0 4px; padding:12px 18px; border-radius:10px; background:var(--accent); color:#fff; font-weight:700; text-decoration:none; }
+    .delete-panel { margin:18px 0; padding:20px; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .confirm { display:flex; gap:10px; align-items:flex-start; margin:0 0 16px; }
+    .confirm input { margin-top:6px; }
+    .status { min-height:1.65em; margin:14px 0 0; font-weight:650; }
+    .status.error { color:#a02712; }
+    .status.success { color:#166534; }
+    .muted { color:var(--muted); }
+    a { color:#9b3d00; }
+    footer { margin-top:42px; padding-top:20px; border-top:1px solid var(--line); color:var(--muted); font-size:14px; }
+  </style>
+</head>
+<body>
+<main>
+  <div class="eyebrow">BAKALIM · Hesap ve veri silme</div>
+  <h1>BAKALIM hesabınızı silme</h1>
+  <p>BAKALIM, bireysel geliştirici <strong>Osman Şamil Erdem</strong> tarafından sunulur. “Erdem Productions” yalnız marka/geliştirici adıdır; şirket değildir.</p>
+
+  <div class="notice">
+    <strong>En hızlı yöntem uygulama içindeki silme seçeneğidir.</strong>
+    <ol>
+      <li>BAKALIM hesabınıza giriş yapın.</li>
+      <li><strong>Hesap</strong> ekranını açın.</li>
+      <li><strong>Hesabı Sil</strong> seçeneğini seçin ve uyarıyı onaylayın.</li>
+    </ol>
+    <p>Hesaptan çıkış yapmak hesabı silmez.</p>
+  </div>
+
+  <h2>Uygulamaya erişemiyorsanız</h2>
+  <p>Uygulamayı yeniden indirmeniz gerekmez. Google ile oluşturduğunuz hesabı aşağıdaki doğrulanmış giriş akışıyla silebilirsiniz. E-posta adresi yazmak tek başına silme işlemi başlatmaz.</p>
+  <div class="delete-panel">
+    <label class="confirm">
+      <input id="confirm-delete" type="checkbox">
+      <span>BAKALIM hesabımın ve hesapla ilişkili verilerin kalıcı olarak silineceğini anlıyorum.</span>
+    </label>
+    <div id="google-signin"></div>
+    <p id="delete-status" class="status" role="status" aria-live="polite"></p>
+  </div>
+  <p><strong>Apple ile giriş yaptıysanız:</strong> Web için gerekli Apple Services ID yapılandırması tamamlanana kadar <a href="mailto:bakalim.app@gmail.com?subject=BAKALIM%20Apple%20hesap%20silme%20talebi">bakalim.app@gmail.com</a> adresinden talep başlatabilirsiniz. E-posta tek başına silme yetkisi değildir; hesap sahibi güvenli biçimde doğrulanmadan işlem yapılmaz.</p>
+
+  <h2>Kimlik doğrulama ve güvenlik</h2>
+  <p>Google düğmesi, Google tarafından imzalanmış kısa ömürlü kimlik bilgisini doğrudan BAKALIM’ın güvenli silme uç noktasına gönderir. Uç nokta aynı yanıtı verdiği için hesabın varlığı üçüncü kişilere açıklanmaz.</p>
+  <p><strong>Parolanızı, Apple/Google tokenınızı, banka bilginizi veya gerekli olmayan kimlik belgesini göndermeyin.</strong> BAKALIM bunları e-postayla istemez.</p>
+
+  <h2>Silinen veriler</h2>
+  <p>Doğrulanmış silme tamamlandığında BAKALIM hesabı; Apple/Google kimlik eşleştirmesi, doğrulanmış e-posta ve varsa görünen ad, hesaba bağlı kaydedilen etkinlikler, hatırlatmalar, bildirim tercihleri, oturumlar, eski push tokenı ve hesapla ilişkilendirilebilen kişisel bildirim kayıtları aktif veritabanından temizlenir.</p>
+
+  <h2>Misafir olarak devam etme</h2>
+  <p>Hesap silindikten sonra uygulama aynı cihazda misafir olarak kullanılabilir. Bunun için teknik installation kaydı hesap kimliğinden ayrılmış ve yalnız yerel/misafir kullanım durumunda kalabilir. Eski hesap kimliği, eski push tokenı ve kişisel bildirim bağlantıları bu kayda taşınmaz.</p>
+
+  <h2>Sınırlı teknik kopyalar</h2>
+  <p>Güvenlik, hukuki yükümlülük veya hizmet sürekliliği için zorunlu sınırlı teknik kayıtlar ile sağlayıcı yedekleri normal log/yedek döngüsü boyunca kalabilir; aktif kullanıcı profili olarak kullanılmaz. Ayrıntılar <a href="https://samil12serdem-rgb.github.io/-bakalim-privacy/">Gizlilik Politikası</a> ve <a href="https://samil12serdem-rgb.github.io/-bakalim-privacy/kvkk.html">KVKK Aydınlatma Metni</a> içinde açıklanır.</p>
+
+  <h2>Ne zaman sonuçlanır?</h2>
+  <p>Kimliği doğrulanan talep en kısa sürede ve en geç 30 gün içinde sonuçlandırılır. Sonuç, doğrulanmış iletişim kanalına bildirilir. Aynı Apple veya Google hesabıyla daha sonra giriş yapılması yeni bir BAKALIM hesabı oluşturabilir.</p>
+
+  <footer>
+    <p>Son güncelleme: 10 Ekim 2026</p>
+  </footer>
+</main>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<script src="delete-account.js" defer></script>
+</body>
+</html>
