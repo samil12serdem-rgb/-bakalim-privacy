@@ -45,7 +45,7 @@
 <h2>6. Hizmet sağlayıcılar ve aktarım</h2>
 <table><thead><tr><th>Hizmet</th><th>Amaç</th><th>Doğrulanan durum</th></tr></thead><tbody>
 <tr><td>Render</td><td>Backend API, worker/cron ve teknik loglar</td><td>API ve collector Frankfurt bölgesinde</td></tr>
-<tr><td>Supabase</td><td>Production PostgreSQL ve yedekleme</td><td>Proje bölgesi/planı/PITR penceresi doğrulanamadı</td></tr>
+<tr><td>Supabase</td><td>Production PostgreSQL ve yedekleme</td><td>Production proje bölgesi eu-west-1 (İrlanda); plan ve PITR penceresi bu metin için doğrulanmadı</td></tr>
 <tr><td>Google/Firebase</td><td>Google giriş, FCM ve installation/push işlemleri</td><td>Google kimliği, FID/push tokenı ve sağlayıcı yanıtları işlenebilir</td></tr>
 <tr><td>Apple</td><td>Apple giriş ve APNs</td><td>Provider kimliği, relay e-posta ve push tokenı işlenebilir</td></tr>
 <tr><td>GitHub Pages</td><td>Yasal sayfaların barındırılması</td><td>Sayfa erişiminde teknik erişim kayıtları oluşabilir</td></tr>
@@ -57,7 +57,7 @@
 <p>Hesap verileri hizmetin sunulması için gerektiği sürece tutulur. Kullanıcı <strong>Hesap → Hesabı Sil</strong> yoluyla veya <a href="delete-account.html">web hesap silme sayfasından</a> talep başlatabilir. Çıkış hesabı silmez.</p>
 <p>Doğrulanmış silme; hesabı, provider eşleştirmesini, doğrulanmış e-postayı, oturumları, tercihleri, kaydedilen etkinlikleri, reminder işlerini, eski push tokenını ve hesap/installation ile ilişkilendirilebilen kişisel bildirim kayıtlarını aktif veritabanından temizler.</p>
 <p>Aynı cihazda misafir kullanımı için installation kaydı hesap kimliğinden ayrılmış ve <code>LOCAL_ONLY</code> durumda kalabilir. Eski hesap kimliği ve eski push tokenıyla bağı korunmaz. Sağlayıcı log/yedeklerindeki sınırlı kopyalar normal döngüleri ve zorunlu güvenlik amacı kapsamında kalabilir; aktif kullanıcı profili olarak kullanılmaz.</p>
-<p>Otomatik süre bazlı retention temizliği production’da kapalıdır. Sabit süreler hukuk/ürün onayından sonra etkinleştirilecek ve bu politika güncellenecektir.</p>
+<p>Diğer veri türleri için otomatik süre bazlı retention temizliği production’da kapalıdır. Bu süreler onaylanıp etkinleştirildiğinde politika güncellenecektir.</p>
 
 <h2>8. Güvenlik</h2>
 <p>TLS, veritabanında şifreli push tokenı, hash’lenmiş refresh tokenı, kısa süreli access tokenı, provider imza/issuer/audience doğrulaması, atomik hesap silme ve hesap enumeration engeli gibi tedbirler uygulanır. Hiçbir elektronik sistem mutlak güvenlik garantisi vermez.</p>
